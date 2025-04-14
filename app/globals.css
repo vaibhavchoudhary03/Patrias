@@ -1,0 +1,309 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Define a more playful, colorful theme with blue focus */
+@layer base {
+  :root {
+    /* Blue-focused color palette */
+    --background: 210 50% 98%;
+    --foreground: 220 50% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 50% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 50% 20%;
+    --primary: 220 90% 50%; /* Vibrant blue */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 190 80% 50%; /* Teal blue */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 340 90% 60%; /* Bright pink/red for accent */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 220 90% 50%;
+    --radius: 1.5rem; /* Much more rounded corners */
+  }
+
+  .dark {
+    --background: 220 30% 10%;
+    --foreground: 0 0% 95%;
+    --card: 220 30% 15%;
+    --card-foreground: 0 0% 95%;
+    --popover: 220 30% 10%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 220 90% 60%; /* Brighter blue for dark mode */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 190 80% 40%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 30% 20%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 340 90% 70%; /* Brighter pink/red for dark mode */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 95%;
+    --border: 220 30% 20%;
+    --input: 220 30% 20%;
+    --ring: 220 90% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* Removed the spotted background pattern */
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--background)) 100%);
+  }
+
+  /* Make buttons and interactive elements more fun */
+  button,
+  .btn,
+  a {
+    @apply transition-all duration-300;
+  }
+
+  button:hover,
+  .btn:hover,
+  a:hover {
+    transform: scale(1.05);
+  }
+
+  button:active,
+  .btn:active,
+  a:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Custom styles for flash cards with more playful animations */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Playful, bubbly UI elements */
+.bubble-card {
+  @apply rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300;
+  border-radius: 2rem;
+  overflow: hidden;
+  border: none;
+  box-shadow: 0 10px 25px -5px rgba(var(--primary), 0.1), 0 8px 10px -6px rgba(var(--primary), 0.1);
+}
+
+.bubble-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Fun button styles */
+.fun-button {
+  @apply rounded-full font-medium relative overflow-hidden;
+  transition: all 0.3s ease;
+  background-size: 200% auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.fun-button-primary {
+  @apply fun-button;
+  background-image: linear-gradient(45deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 51%, hsl(var(--primary)) 100%);
+}
+
+.fun-button-secondary {
+  @apply fun-button;
+  background-image: linear-gradient(
+    45deg,
+    hsl(var(--secondary)) 0%,
+    hsl(var(--primary)) 51%,
+    hsl(var(--secondary)) 100%
+  );
+}
+
+.fun-button-accent {
+  @apply fun-button;
+  background-image: linear-gradient(45deg, hsl(var(--accent)) 0%, hsl(var(--primary)) 51%, hsl(var(--accent)) 100%);
+}
+
+.fun-button:hover {
+  background-position: right center;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.fun-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Gradient backgrounds */
+.fun-gradient {
+  background: linear-gradient(135deg, rgba(var(--primary), 0.1) 0%, rgba(var(--secondary), 0.1) 100%);
+}
+
+.fun-gradient-blue {
+  background: linear-gradient(135deg, #e0f7ff 0%, #d6e9ff 100%);
+}
+
+.fun-gradient-accent {
+  background: linear-gradient(135deg, rgba(var(--accent), 0.1) 0%, rgba(var(--primary), 0.1) 100%);
+}
+
+/* Floating animation for cards */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.float {
+  animation: float 5s ease-in-out infinite;
+}
+
+/* Blob shapes for backgrounds */
+.blob-shape {
+  border-radius: 71% 29% 65% 35% / 46% 44% 56% 54%;
+}
+
+/* Confetti animation for celebrations */
+@keyframes confetti {
+  0% {
+    transform: translateY(0) rotate(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: hsl(var(--primary));
+  animation: confetti 5s ease-in-out forwards;
+}
+
+/* Custom button styles */
+.button-3d {
+  @apply rounded-full font-medium relative overflow-hidden;
+  transition: all 0.2s ease;
+  box-shadow: 0 6px 0 #1a56db, 0 8px 10px rgba(0, 0, 0, 0.15);
+}
+
+.button-3d:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 #1a56db, 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.button-3d:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #1a56db, 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Wavy button */
+.button-wavy {
+  @apply rounded-full font-medium relative overflow-hidden;
+  transition: all 0.3s ease;
+}
+
+.button-wavy::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 5px,
+    rgba(255, 255, 255, 0.5) 5px,
+    rgba(255, 255, 255, 0.5) 10px
+  );
+  border-radius: 0 0 30px 30px;
+}
+
+.button-wavy:hover {
+  transform: translateY(-3px);
+}
+
+.button-wavy:hover::after {
+  bottom: -2px;
+}
+
+/* Glowing button */
+.button-glow {
+  @apply rounded-full font-medium relative overflow-hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(var(--primary), 0.5);
+}
+
+.button-glow:hover {
+  box-shadow: 0 0 20px rgba(var(--primary), 0.8);
+}
+
+/* Consistent spacing utilities */
+.section-spacing {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.content-spacing {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.element-spacing {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Larger text for better readability */
+.text-larger {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+/* Make buttons larger and more distinct */
+.btn-larger {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.125rem;
+}
+
+/* Ensure cards have proper padding */
+.card-padding {
+  padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .card-padding {
+    padding: 2rem;
+  }
+
+  .section-spacing {
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+  }
+}
